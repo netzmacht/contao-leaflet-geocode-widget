@@ -9,3 +9,5 @@
  */
 
 $GLOBALS['TL_LANG']['ERR']['leaflet_invalid_coordinate'] = 'Die angegebenen Koordinaten sind ungültig.';
+$GLOBALS['TL_LANG']['MSC']['leafletSearchPositionLabel'] = 'Suchen';
+$GLOBALS['TL_LANG']['MSC']['leafletApplyPositionLabel']  = 'Übernehmen';

@@ -4,7 +4,8 @@ $GLOBALS['TL_CSS'][] = 'assets/leaflet/libs/leaflet/leaflet.css';
 $GLOBALS['TL_CSS'][] = 'assets/leaflet/libs/control-geocoder/Control.Geocoder.css'; 
 
 $GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/leaflet/leaflet.js';
-$GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/control-geocoder/Control.Geocoder.js'; 
+$GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/control-geocoder/Control.Geocoder.js';
+$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/leafletgeocodewidget/js/geocode.widget.js';
 
 ?>
 
@@ -16,64 +17,14 @@ $GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/control-geocoder/Control.Geoc
        onfocus="Backend.getScrollOffset()"
 >
 
-<div id="map_<?php echo $this->name; ?>" style="margin-top: 5px; width: calc(100% - 28px); height: 300px"></div>
-<script>
-    var map = L.map('map_<?php echo $this->name; ?>').setView([0, 0], 2);
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-    var element  = $('<?php echo $this->name; ?>');
-    var geocoder = L.Control.geocoder({
-        defaultMarkGeocode: false,
-        collapsed: false,
-        placeholder: '<?php echo $GLOBALS['TL_LANG']['leaflet']['searchPosition']; ?>'
-    }).addTo(map);
-
-    geocoder.on('markgeocode', function(event) {
-        var container = document.createElement('div');
-        var link      = document.createElement('button');
-        var result    = event.geocode;
-
-        link.set('style', 'margin-left: 10px;');
-        link.appendText('<?php echo $GLOBALS['TL_LANG']['leaflet']['applyPosition']; ?>');
-        link.addEvent('click', function(e) {
-            e.stop();
-
-            element.set('value', result.center.lat + ',' + result.center.lng);
-        });
-
-        container.appendHTML(result.html || result.name);
-        container.appendChild(link);
-
-        if (this._geocodeMarker) {
-            map.removeLayer(this._geocodeMarker);
-        }
-
-        map.fitBounds(result.bbox, { padding: [0, 70]});
-        map.panTo(result.center);
-
-        this._geocodeMarker = new L.Marker(result.center, {draggable: true})
-            .bindPopup(container, {
-                keepInView: true,
-                autoPanPaddingTopLeft: [0, 70]
-            })
-            .addTo(map)
-            .openPopup();
-
-        this._geocodeMarker.on('dragend', function (event) {
-            element.set('value', event.target._latlng.lat + ',' + event.target._latlng.lng);
-        });
-    });
-
-    <?php if ($this->marker): ?>
-    geocoder._geocodeMarker = L.marker(<?php echo $this->marker; ?>, {draggable: true}).addTo(map);
-    geocoder._geocodeMarker.on('dragend', function (event) {
-        element.set('value', event.target._latlng.lat + ',' + event.target._latlng.lng);
-    });
-    map.setZoom(16);
-    map.panTo(<?php echo $this->marker; ?>);
-    <?php endif; ?>
-
-</script>
+<img src="bundles/leafletgeocodewidget/img/map.png" id="ctrl_<?= $this->id ?>_toggle">
 
 <?= $this->wizard ?>
+<script>
+    new LeafletGeocodeWidget({
+        id: 'ctrl_<?= $this->id ?>',
+        searchPositionLabel: '<?= $GLOBALS['TL_LANG']['MSC']['leafletSearchPositionLabel'] ?>',
+        applyPositionLabel: '<?= $GLOBALS['TL_LANG']['MSC']['leafletApplyPositionLabel'] ?>',
+        modalTitle: '<?= $this->label ?>'
+    })
+</script>

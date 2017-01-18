@@ -94,6 +94,7 @@ class GeocodeWidget extends \Widget
                 'id'         => $this->strId,
                 'attributes' => $this->getAttributes(),
                 'wizard'     => $this->wizard,
+                'label'      => $this->strLabel
             ]
         );
 
