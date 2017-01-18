@@ -22,7 +22,7 @@
     "php":">=5.5.0",
     "contao/core-bundle":"~3.5 | ~4.3",
     "contao-community-alliance/composer-plugin": "~2.4 | ~3.0",
-    "netzmacht/contao-leaflet-libraries":"~2.0"
+    "netzmacht/contao-leaflet-libraries":"~1.0"
   },
   "require-dev": {
     "netzmacht/contao-build-tools": "~1.1"
