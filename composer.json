@@ -1,0 +1,44 @@
+{
+  "name":"netzmacht/contao-leaflet-geocode-widget",
+  "description":"Geocode widget based on Leaflet",
+  "keywords":["geocode", "contao", "widget", "leaflet"],
+  "type":"contao-bundle",
+  "license":"LGPL-3.0+",
+  "authors":[
+    {
+      "name":"David Molineus",
+      "email":"mail@netzmacht.de",
+      "homepage":"http://www.netzmacht.de",
+      "role":"Project leader"
+    }
+  ],
+  "support":{
+    "email":"mail@netzmacht.de",
+    "issues":"https://github.com/contao-bootstrap/core/issues",
+    "wiki":"http://contao-bootstrap.netzmacht.de",
+    "source":"https://github.com/contao-bootstrap/core"
+  },
+  "require":{
+    "php":">=5.5.0",
+    "contao/core-bundle":"~3.5 | ~4.3",
+    "contao-community-alliance/composer-plugin": "~2.4 | ~3.0",
+    "netzmacht/contao-leaflet-libraries":"~2.0"
+  },
+  "require-dev": {
+    "netzmacht/contao-build-tools": "~1.1"
+  },
+  "suggest": {
+    "netzmacht/contao-leaflet-maps": "Leaflet Maps for Contao"
+  },
+  "autoload": {
+    "psr-4": { "Netzmacht\\Contao\\Leaflet\\GeocodeWidget\\": "src/" }
+  },
+  "extra":{
+    "branch-alias": {
+      "dev-master": "1.0.x-dev",
+      "dev-develop": "1.1.x-dev"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
