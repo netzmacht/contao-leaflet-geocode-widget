@@ -21,7 +21,7 @@ php composer.phar require netzmacht/contao-leaflet-geocode-widget
 ```
 
 ### 2. Update your AppKernel.php
-
+git
 If you use the managed edition of Contao you can skip this step.
 
 ```php
