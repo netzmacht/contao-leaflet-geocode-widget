@@ -22,6 +22,8 @@ php composer.phar require netzmacht/contao-leaflet-geocode-widget
 
 ### 2. Update your AppKernel.php
 
+If you use the managed edition of Contao you can skip this step.
+
 ```php
 
   // Dependency is automatically installed and has to be registered
