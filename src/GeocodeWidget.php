@@ -1,11 +1,13 @@
 <?php
 
 /**
+ * Geocode backend widget based on Leaflet.
+ *
  * @package    netzmacht
  * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
+ * @copyright  2016-2017 netzmacht David Molineus. All rights reserved.
+ * @license    LGPL-3.0 https://github.com/netzmacht/contao-leaflet-geocode-widget/blob/master/LICENSE
  * @filesource
- *
  */
 
 namespace Netzmacht\Contao\Leaflet\GeocodeWidget;
@@ -51,6 +53,8 @@ class GeocodeWidget extends \Widget
      * @param mixed $value Given value.
      *
      * @return mixed
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
     protected function validator($value)
     {
@@ -60,13 +64,11 @@ class GeocodeWidget extends \Widget
             return $value;
         }
 
-        if (
-            // See: http://stackoverflow.com/a/18690202
-            !preg_match(
-                '#^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)(,[-+]?\d+)?$#',
-                $value
-            )
-        ) {
+        // See: http://stackoverflow.com/a/18690202
+        if (!preg_match(
+            '#^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)(,[-+]?\d+)?$#',
+            $value
+        )) {
             $this->addError(
                 sprintf(
                     $GLOBALS['TL_LANG']['ERR']['leafletInvalidCoordinate'],

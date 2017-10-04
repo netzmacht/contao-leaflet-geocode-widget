@@ -1,3 +1,13 @@
+/**
+ * Geocode backend widget based on Leaflet.
+ *
+ * @package    netzmacht
+ * @author     David Molineus <david.molineus@netzmacht.de>
+ * @copyright  2016-2017 netzmacht David Molineus. All rights reserved.
+ * @license    LGPL-3.0 https://github.com/netzmacht/contao-leaflet-geocode-widget/blob/master/LICENSE
+ * @filesource
+ */
+
 var LeafletGeocodeWidget = L.Class.extend({
     options: {
         mapTemplate: '<div id="leaflet_geocode_widget_map_{id}" class="" style="width 100%; height: 50vh; min-height: 400px"></div>',
@@ -31,8 +41,12 @@ var LeafletGeocodeWidget = L.Class.extend({
             'hideFooter': true,
             'draggable': false,
             'overlayOpacity': .5,
-            'onShow': function() { document.body.setStyle('overflow', 'hidden'); },
-            'onHide': function() { document.body.setStyle('overflow', 'auto'); }
+            'onShow': function () {
+                document.body.setStyle('overflow', 'hidden');
+            },
+            'onHide': function () {
+                document.body.setStyle('overflow', 'auto');
+            }
         });
     },
     _createMap: function (modal) {
@@ -69,7 +83,7 @@ var LeafletGeocodeWidget = L.Class.extend({
 
         link.set('style', 'margin-left: 10px;');
         link.appendText(this.options.applyPositionLabel);
-        link.addEvent('click', function(e) {
+        link.addEvent('click', function (e) {
             e.stop();
 
             this.element.set('value', result.center.lat + ',' + result.center.lng);
