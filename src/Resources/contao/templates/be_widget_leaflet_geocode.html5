@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-$GLOBALS['TL_CSS'][] = 'assets/leaflet/libs/leaflet/leaflet.css'; 
-$GLOBALS['TL_CSS'][] = 'assets/leaflet/libs/control-geocoder/Control.Geocoder.css'; 
+$GLOBALS['TL_CSS'][] = 'assets/leaflet/libs/leaflet/leaflet.css';
+$GLOBALS['TL_CSS'][] = 'assets/leaflet/libs/control-geocoder/Control.Geocoder.css';
 
 $GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/leaflet/leaflet.js';
 $GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/control-geocoder/Control.Geocoder.js';
@@ -9,15 +9,17 @@ $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/leafletgeocodewidget/js/geocode.widget.js
 
 ?>
 
-<input type="text"
-       name="<?= $this->name ?>"
-       id="ctrl_<?= $this->id ?>"
-       class="tl_text tl_leaflet_geocode<?= $this->class ?>"
-       value="<?= $this->value ?>"<?= $this->attributes ?>
-       onfocus="Backend.getScrollOffset()"
->
+<div class="wizard">
+    <input type="text"
+           name="<?= $this->name ?>"
+           id="ctrl_<?= $this->id ?>"
+           class="tl_text tl_leaflet_geocode<?= $this->class ?>"
+           value="<?= $this->value ?>"<?= $this->attributes ?>
+           onfocus="Backend.getScrollOffset()"
+    >
 
-<img src="bundles/leafletgeocodewidget/img/map.png" id="ctrl_<?= $this->id ?>_toggle">
+    <img src="bundles/leafletgeocodewidget/img/map.png" id="ctrl_<?= $this->id ?>_toggle">
+</div>
 
 <?= $this->wizard ?>
 <script>
