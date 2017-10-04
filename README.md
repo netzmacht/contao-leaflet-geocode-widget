@@ -9,6 +9,10 @@ Leaflet geocode widget
 
 This extension provides an widget to pick coordinates from a map. It uses the leaflet framework.
 
+Changlog
+--------
+
+See [CHANGELOG](CHANGELOG.md).
 
 Requirements
 ------------
@@ -52,7 +56,7 @@ $GLOBALS['TL_DCA']['tl_example']['fields']['coordinates'] = [
     'label'     => ['Koordinaten', 'Geben Sie die Koordinaten ein'],
     'inputType' => 'leaflet_geocode',
     'eval'      => [
-        'tl_class' => 'w50 wizard',
+        'tl_class' => 'w50',
     ],
     'sql' => 'varchar(255) NOT NULL default \'\''
 ];
