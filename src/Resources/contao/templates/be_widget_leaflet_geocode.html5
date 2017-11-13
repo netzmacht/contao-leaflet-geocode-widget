@@ -2,6 +2,7 @@
 
 $GLOBALS['TL_CSS'][] = 'assets/leaflet/libs/leaflet/leaflet.css';
 $GLOBALS['TL_CSS'][] = 'assets/leaflet/libs/control-geocoder/Control.Geocoder.css';
+$GLOBALS['TL_CSS'][] = 'bundles/leafletgeocodewidget/css/backend.css';
 
 $GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/leaflet/leaflet.js';
 $GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/control-geocoder/Control.Geocoder.js';
@@ -9,7 +10,7 @@ $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/leafletgeocodewidget/js/geocode.widget.js
 
 ?>
 
-<div class="wizard">
+<div class="<?= $this->wrapperClass ?>">
     <input type="text"
            name="<?= $this->name ?>"
            id="ctrl_<?= $this->id ?>"

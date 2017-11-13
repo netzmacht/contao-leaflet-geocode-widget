@@ -15,7 +15,8 @@ namespace Netzmacht\Contao\Leaflet\GeocodeWidget;
 /**
  * Class GeocodeWidget
  *
- * @package Netzmacht\Contao\Leaflet\GeocodeWidget
+ * @property int  size
+ * @property bool multiple
  */
 class GeocodeWidget extends \Widget
 {
@@ -87,20 +88,39 @@ class GeocodeWidget extends \Widget
      */
     public function generate()
     {
-        $template = new \BackendTemplate($this->widgetTemplate);
-        $template->setData(
-            [
-                'widget'     => $this,
-                'value'      => specialchars($this->value),
-                'class'      => $this->strClass ? ' ' . $this->strClass : '',
-                'id'         => $this->strId,
-                'name'       => $this->strName,
-                'attributes' => $this->getAttributes(),
-                'wizard'     => $this->wizard,
-                'label'      => $this->strLabel
-            ]
-        );
+        $wrapperClass = 'wizard';
 
-        return $template->parse();
+        if (!$this->multiple || !$this->size) {
+            $this->size = 1;
+        } else {
+            $wrapperClass .= ' wizard_' . $this->size;
+        }
+
+        if (!is_array($this->value)) {
+            $this->value = [$this->value];
+        }
+
+        $buffer = '';
+
+        for ($index = 0; $index < $this->size; $index++) {
+            $template = new \BackendTemplate($this->widgetTemplate);
+            $template->setData(
+                [
+                    'wrapperClass' => $wrapperClass,
+                    'widget'       => $this,
+                    'value'        => \StringUtil::specialchars($this->value[$index]),
+                    'class'        => $this->strClass ? ' ' . $this->strClass : '',
+                    'id'           => $this->strId . (($this->size > 1) ? '_' . $index : ''),
+                    'name'         => $this->strName . (($this->size > 1) ? '[]' : ''),
+                    'attributes'   => $this->getAttributes(),
+                    'wizard'       => $this->wizard,
+                    'label'        => $this->strLabel,
+                ]
+            );
+
+            $buffer .= $template->parse();
+        }
+
+        return $buffer;
     }
 }

@@ -2,6 +2,13 @@
 Changelog
 =========
 
+Version 1.2.0 (2017-11-13)
+--------------------------
+
+[Full Changelog](https://github.com/netzmacht/contao-leaflet-geocode-widget/compare/1.1.0...1.2.0)
+
+ - Allow multiple elements
+
 Version 1.1.0
 -------------
 
