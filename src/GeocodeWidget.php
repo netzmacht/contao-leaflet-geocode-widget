@@ -65,6 +65,14 @@ class GeocodeWidget extends \Widget
             return $value;
         }
 
+        if (is_array($value)) {
+            foreach ($value as $key => $val) {
+                $value[$key] = $this->validator($val);
+            }
+
+            return $value;
+        }
+
         // See: http://stackoverflow.com/a/18690202
         if (!preg_match(
             '#^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)(,[-+]?\d+)?$#',
