@@ -13,8 +13,8 @@
         {
             "name": "David Molineus",
             "email": "mail@netzmacht.de",
-            "homepage": "http://www.netzmacht.de",
-            "role": "Project leader"
+            "homepage": "https://netzmacht.de",
+            "role": "Developer"
         }
     ],
     "support": {
@@ -25,7 +25,7 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "contao/core-bundle": "~4.4.0",
+        "contao/core-bundle": "^4.4.0",
         "netzmacht/contao-leaflet-libraries": "~1.0"
     },
     "require-dev": {
