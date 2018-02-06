@@ -18,7 +18,6 @@ use Netzmacht\Contao\Leaflet\GeocodeWidget\Widget\GeocodeWidget as BaseWidget;
 /**
  * Class GeocodeWidget
  *
- * @package Netzmacht\Contao\Leaflet\GeocodeWidget
  * @deprecated
  */
 class GeocodeWidget extends BaseWidget
@@ -30,6 +29,7 @@ class GeocodeWidget extends BaseWidget
     {
         parent::__construct($arrAttributes);
 
+        // @codingStandardsIgnoreStart
         @trigger_error(
             sprintf(
                 '"%s" is deprecated and will be removed in version 2.0.0. Use "%s" instead.',
@@ -38,5 +38,6 @@ class GeocodeWidget extends BaseWidget
             ),
             E_USER_DEPRECATED
         );
+        // @codingStandardsIgnoreEnd
     }
 }
