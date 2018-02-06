@@ -2,6 +2,15 @@
 Changelog
 =========
 
+Version 1.3.0 (2018-02-xx)
+--------------------------
+
+[Full Changelog](https://github.com/netzmacht/contao-leaflet-geocode-widget/compare/1.2.1...1.3.0)
+
+ - Deprecate `Netzmacht\Contao\Leaflet\GeocodeWidget`. Use `Netzmacht\Contao\Leaflet\Widget\GeocodeWidget` instead.
+ - Add feature to adjust a radius.
+ - Allow Contao 4.5.0.
+
 Version 1.2.0 (2017-11-13)
 --------------------------
 
