@@ -2,3 +2,15 @@
     width: 325px;
     display: inline-block;
 }
+
+.leaflet-submit-btn {
+    margin-top: 10px;
+    display: block;
+    padding: 7px 12px;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    box-sizing: border-box;
+    cursor: pointer;
+    background: #eee;
+    transition: background .2s ease;
+}

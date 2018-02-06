@@ -123,6 +123,7 @@ class GeocodeWidget extends \Widget
                     'attributes'   => $this->getAttributes(),
                     'wizard'       => $this->wizard,
                     'label'        => $this->strLabel,
+                    'radius'       => $this->radius
                 ]
             );
 

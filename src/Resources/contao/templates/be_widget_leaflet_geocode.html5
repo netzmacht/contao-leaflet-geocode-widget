@@ -6,6 +6,12 @@ $GLOBALS['TL_CSS'][] = 'bundles/leafletgeocodewidget/css/backend.css';
 
 $GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/leaflet/leaflet.js';
 $GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/control-geocoder/Control.Geocoder.js';
+
+if ($this->radius) {
+    $GLOBALS['TL_CSS'][]        = 'assets/leaflet/libs/leaflet-pm/leaflet.pm.css';
+    $GLOBALS['TL_JAVASCRIPT'][] = 'assets/leaflet/libs/leaflet-pm/leaflet.pm.min.js';
+}
+
 $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/leafletgeocodewidget/js/geocode.widget.js';
 
 ?>
@@ -24,10 +30,16 @@ $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/leafletgeocodewidget/js/geocode.widget.js
 
 <?= $this->wizard ?>
 <script>
-    new LeafletGeocodeWidget({
-        id: 'ctrl_<?= $this->id ?>',
-        searchPositionLabel: '<?= $GLOBALS['TL_LANG']['MSC']['leafletSearchPositionLabel'] ?>',
-        applyPositionLabel: '<?= $GLOBALS['TL_LANG']['MSC']['leafletApplyPositionLabel'] ?>',
-        modalTitle: '<?= $this->label ?>'
-    })
+    window.addEvent(
+        'domready',
+        function () {
+            new LeafletGeocodeWidget({
+                id: 'ctrl_<?= $this->id ?>',
+                searchPositionLabel: '<?= $GLOBALS['TL_LANG']['MSC']['leafletSearchPositionLabel'] ?>',
+                applyPositionLabel: '<?= $GLOBALS['TL_LANG']['MSC']['leafletApplyPositionLabel'] ?>',
+                modalTitle: '<?= $this->label ?>'<?php if ($this->radius): ?>,
+                radius: 'ctrl_<?= $this->radius ?>'<?php endif ?>
+            })
+        }
+    );
 </script>
