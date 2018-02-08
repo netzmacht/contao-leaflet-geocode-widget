@@ -10,7 +10,6 @@
  * @filesource
  */
 
-
 namespace Netzmacht\Contao\Leaflet\GeocodeWidget;
 
 use Netzmacht\Contao\Leaflet\GeocodeWidget\Widget\GeocodeWidget as BaseWidget;

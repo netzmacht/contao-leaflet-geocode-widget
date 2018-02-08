@@ -1,0 +1,3 @@
+services:
+  netzmacht.contao_leaflet_geocode.listeners.radius_wizard:
+    class: Netzmacht\Contao\Leaflet\GeocodeWidget\EventListener\RadiusWizardCallbackListener
