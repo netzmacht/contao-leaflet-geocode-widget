@@ -123,7 +123,7 @@ class GeocodeWidget extends \Widget
                     'attributes'   => $this->getAttributes(),
                     'wizard'       => $this->wizard,
                     'label'        => $this->strLabel,
-                    'radius'       => $this->radius
+                    'radius'       => $this->buildRadiusOptions()
                 ]
             );
 
@@ -131,5 +131,36 @@ class GeocodeWidget extends \Widget
         }
 
         return $buffer;
+    }
+
+    /**
+     * Build the radius options.
+     *
+     * @return array|null
+     *
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
+    private function buildRadiusOptions()
+    {
+        if (!$this->radius || !isset($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->radius])) {
+            return null;
+        }
+
+        $options = [
+            'element'      => 'ctrl_' . $this->radius,
+            'min'          => 0,
+            'max'          => 0,
+            'defaultValue' => 0
+        ];
+
+        if (isset($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->radius]['eval'])) {
+            $config = $GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->radius]['eval'];
+
+            $options['min']          = isset($config['minval']) ? (int) $config['minval'] : 0;
+            $options['max']          = isset($config['maxval']) ? (int) $config['maxval'] : 0;
+            $options['defaultValue'] = isset($config['default']) ? (int) $config['default'] : 0;
+        }
+
+        return $options;
     }
 }

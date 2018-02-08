@@ -3,6 +3,12 @@
     display: inline-block;
 }
 
+.leaflet-geocode-map {
+    width: 100%;
+    height: 50vh;
+    min-height: 400px
+}
+
 .leaflet-submit-btn {
     margin-top: 10px;
     display: block;

@@ -38,7 +38,9 @@ $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/leafletgeocodewidget/js/geocode.widget.js
                 searchPositionLabel: '<?= $GLOBALS['TL_LANG']['MSC']['leafletSearchPositionLabel'] ?>',
                 applyPositionLabel: '<?= $GLOBALS['TL_LANG']['MSC']['leafletApplyPositionLabel'] ?>',
                 modalTitle: '<?= $this->label ?>'<?php if ($this->radius): ?>,
-                radius: 'ctrl_<?= $this->radius ?>'<?php endif ?>
+                radius: <?= json_encode($this->radius) ?>,
+                picker: LeafletGeocodeCirclePicker
+                <?php endif ?>
             })
         }
     );
