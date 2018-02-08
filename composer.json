@@ -8,7 +8,7 @@
         "leaflet"
     ],
     "type": "contao-bundle",
-    "license": "LGPL-3.0+",
+    "license": "LGPL-3.0-or-later",
     "authors": [
         {
             "name": "David Molineus",
@@ -30,7 +30,8 @@
     },
     "require-dev": {
         "contao/manager-plugin": "^2.0",
-        "phpcq/all-tasks": "^1.2"
+        "phpcq/all-tasks": "^1.2",
+        "php-http/guzzle6-adapter": "^1.1"
     },
     "suggest": {
         "netzmacht/contao-leaflet-maps": "Leaflet Maps for Contao"
