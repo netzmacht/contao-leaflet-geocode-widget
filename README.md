@@ -51,11 +51,44 @@ bin/console assets:install --symlink
 
 ### 4. Use the widget
 
+#### Coordinates only
+
 ```php
 $GLOBALS['TL_DCA']['tl_example']['fields']['coordinates'] = [
     'label'     => ['Koordinaten', 'Geben Sie die Koordinaten ein'],
     'inputType' => 'leaflet_geocode',
     'eval'      => [
+        'tl_class' => 'w50',
+    ],
+    'sql' => 'varchar(255) NOT NULL default \'\''
+];
+```
+
+#### Coordinates and radius
+
+To pick the radius in meters as well, you have to configure the `eval.radius` option for the related radius field.
+The radius field should be a simle text input. The `default`, `minval` and `maxval` flags are passed to the geocode 
+widget so that only radius in that boundary can be chosen.
+
+```php
+$GLOBALS['TL_DCA']['tl_page']['fields']['coordinates'] = [
+    'label'     => ['Koordinaten', 'Geben Sie die Koordinaten ein'],
+    'inputType' => 'leaflet_geocode',
+    'eval'      => [
+        'tl_class' => 'w50',
+        'radius'   => 'radius'
+    ],
+    'sql' => 'varchar(255) NOT NULL default \'\''
+];
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['radius'] = [
+    'label'     => ['Radius', 'Angabe des Radius in Metern'],
+    'inputType' => 'text',
+    'eval'      => [
+        'rgxp'     => 'natural',
+        'default'  => 500,
+        'minval'   => 100,
+        'maxval'   => 5000,
         'tl_class' => 'w50',
     ],
     'sql' => 'varchar(255) NOT NULL default \'\''
