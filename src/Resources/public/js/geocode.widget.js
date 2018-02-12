@@ -220,7 +220,7 @@ var LeafletGeocodeWidget = L.Class.extend({
             container.appendChild(okButton);
             container.appendChild(cancelButton);
 
-            marker.bindPopup (container, {
+            marker.bindPopup(container, {
                 keepInView: true,
                 autoPanPaddingTopLeft: this.options.bboxPadding,
                 autoClose: false,
