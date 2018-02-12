@@ -25,7 +25,7 @@ $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/leafletgeocodewidget/js/geocode.widget.js
            onfocus="Backend.getScrollOffset()"
     >
 
-    <img src="bundles/leafletgeocodewidget/img/map.png" id="ctrl_<?= $this->id ?>_toggle">
+    <a href="#"><img src="bundles/leafletgeocodewidget/img/map.png" id="ctrl_<?= $this->id ?>_toggle"></a>
 </div>
 
 <?= $this->wizard ?>

@@ -143,7 +143,9 @@ var LeafletGeocodeWidget = L.Class.extend({
             }
         }
     },
-    _showMap: function () {
+    _showMap: function (e) {
+        e.stop();
+
         // Create modal window.
         var content = L.Util.template(this.options.mapTemplate, this.options);
         this.modal  = this._createModal();
