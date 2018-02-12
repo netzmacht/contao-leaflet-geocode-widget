@@ -90,7 +90,10 @@ var LeafletGeocodeCirclePicker = LeafletGeocodeAbstractPicker.extend({
     _updateCoordinates: function (position,radius) {
         this.marker.pm.disable();
         this.marker.setLatLng(position);
-        this.marker.setRadius(radius);
+
+        if (radius !== undefined) {
+            this.marker.setRadius(radius);
+        }
         this.marker.pm.enable();
     },
     _enableEditMode: function () {
