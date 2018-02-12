@@ -13,11 +13,11 @@ var LeafletGeocodeAbstractPicker = L.Class.extend({
         L.Util.setOptions(this, options);
         this.map = map;
     },
-    show: function (position) {
+    show: function (position, radius) {
         if (!this.marker) {
-            this._createMarker(position);
+            this._createMarker(position, radius);
         } else {
-            this._updateCoordinates(position);
+            this._updateCoordinates(position, radius);
         }
 
         this._panTo(position);
@@ -59,8 +59,8 @@ var LeafletGeocodeCirclePicker = LeafletGeocodeAbstractPicker.extend({
     _panTo: function () {
         this.map.fitBounds(this.marker.getBounds());
     },
-    _createMarker: function (position) {
-        this.marker = L.circle(position, { radius: this.options.radius.default });
+    _createMarker: function (position, radius) {
+        this.marker = L.circle(position, { radius: radius || this.options.radius.default });
         this.marker.addTo(this.map);
 
         this.marker.on('pm:markerdragend', function () {
@@ -87,9 +87,10 @@ var LeafletGeocodeCirclePicker = LeafletGeocodeAbstractPicker.extend({
 
         this._enableEditMode();
     },
-    _updateCoordinates: function (position) {
+    _updateCoordinates: function (position,radius) {
         this.marker.pm.disable();
         this.marker.setLatLng(position);
+        this.marker.setRadius(radius);
         this.marker.pm.enable();
     },
     _enableEditMode: function () {
@@ -141,6 +142,10 @@ var LeafletGeocodeWidget = L.Class.extend({
             if (this.radius.get('value').length > 0) {
                 this.options.radius.default = parseInt(this.radius.get('value'));
             }
+
+            if (this.options.radius.default === undefined) {
+                this.options.radius.default = 0;
+            }
         }
     },
     _showMap: function (e) {
@@ -179,6 +184,7 @@ var LeafletGeocodeWidget = L.Class.extend({
     },
     _createMap: function () {
         var map     = L.map('leaflet_geocode_widget_map_' + this.options.id, this.options.map).setView([0, 0], 2);
+        var radius  = 0;
         this.picker = new this.options.picker(map, this.options);
 
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -196,7 +202,11 @@ var LeafletGeocodeWidget = L.Class.extend({
         }.bind(this));
 
         if (this.element.value) {
-            this.picker.show(L.latLng(this.element.value.split(/,/)));
+            if (this.radius && this.radius.get('value').length > 0) {
+                radius = parseInt(this.radius.get('value'));
+            }
+
+            this.picker.show(L.latLng(this.element.value.split(/,/)), radius);
         }
     }
 });
