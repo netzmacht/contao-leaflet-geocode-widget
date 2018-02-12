@@ -37,7 +37,7 @@ class RadiusWizardCallbackListener
         }
 
         return sprintf(
-            '<a href="#" onclick="$(\'ctrl_%s_toggle\').fireEvent(\'click\');return false;"><img src="%s"></a>',
+            '<a href="#" onclick="$(\'ctrl_%s_toggle\').click();return false;"><img src="%s"></a>',
             $GLOBALS['TL_DCA'][$dataContainer->table]['fields'][$dataContainer->field]['eval']['coordinates'],
             'bundles/leafletgeocodewidget/img/map.png'
         );
