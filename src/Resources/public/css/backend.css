@@ -9,9 +9,9 @@
     min-height: 400px
 }
 
-.leaflet-submit-btn {
+.leaflet-geocode-btn {
     margin-top: 10px;
-    display: block;
+    display: inline-block;
     padding: 7px 12px;
     border: 1px solid #aaa;
     border-radius: 2px;
@@ -19,4 +19,8 @@
     cursor: pointer;
     background: #eee;
     transition: background .2s ease;
+}
+
+.leaflet-geocode-btn + .leaflet-geocode-btn {
+    margin-left: 5px;
 }

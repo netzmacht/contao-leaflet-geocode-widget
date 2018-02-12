@@ -124,6 +124,9 @@ var LeafletGeocodeWidget = L.Class.extend({
         modalTitle: 'Choose coordinates',
         searchPositionLabel: 'Search',
         applyPositionLabel: 'Apply',
+        confirmPositionLabel: 'Set as new position',
+        okLabel: 'Ok',
+        cancelLabel: 'Cancel',
         radius: null,
         picker: LeafletGeocodeMarkerPicker,
         map: {
@@ -193,6 +196,38 @@ var LeafletGeocodeWidget = L.Class.extend({
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+
+        map.on('click', function (event) {
+            var marker       = new L.marker(event.latlng).addTo(map);
+            var container    = document.createElement('div');
+            var okButton     = document.createElement('button');
+            var cancelButton = document.createElement('button');
+
+            okButton.set('class', 'leaflet-geocode-btn').appendHTML(this.options.okLabel);
+            okButton.addEvent('click', function (event) {
+                event.stop();
+
+                this.picker.show(marker.getLatLng());
+                map.removeLayer(marker);
+            }.bind(this));
+
+            cancelButton.set('class', 'leaflet-geocode-btn').appendHTML(this.options.cancelLabel);
+            cancelButton.addEvent('click', function (event) {
+                map.removeLayer(marker);
+            });
+
+            container.appendHTML('<h2>' + this.options.confirmPositionLabel + '</h2>');
+            container.appendChild(okButton);
+            container.appendChild(cancelButton);
+
+            marker.bindPopup (container, {
+                keepInView: true,
+                autoPanPaddingTopLeft: this.options.bboxPadding,
+                autoClose: false,
+                closeOnClick: false,
+                closeButton: false
+            }).openPopup();
+        }.bind(this));
 
         var geoCoder = L.Control.geocoder({
             defaultMarkGeocode: false,
