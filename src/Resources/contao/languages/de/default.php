@@ -13,3 +13,6 @@
 $GLOBALS['TL_LANG']['ERR']['leafletInvalidCoordinate']   = 'Die angegebenen Koordinaten sind ungültig.';
 $GLOBALS['TL_LANG']['MSC']['leafletSearchPositionLabel'] = 'Suchen';
 $GLOBALS['TL_LANG']['MSC']['leafletApplyPositionLabel']  = 'Übernehmen';
+$GLOBALS['TL_LANG']['MSC']['leafletConfirmPositionLabel'] = 'Als neue Position übernehmen?';
+$GLOBALS['TL_LANG']['MSC']['leafletOkLabel']              = 'Ja';
+$GLOBALS['TL_LANG']['MSC']['leafletCancelLabel']          = 'Nein';
