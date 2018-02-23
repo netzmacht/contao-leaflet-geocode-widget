@@ -49,12 +49,22 @@ var LeafletGeocodeMarkerPicker = LeafletGeocodeAbstractPicker.extend({
 
 var LeafletGeocodeCirclePicker = LeafletGeocodeAbstractPicker.extend({
     apply: function (coordinatesInput, radiusInput) {
+        var radius      = '';
         var coordinates = this.marker
             ? ( this.marker.getLatLng().lat + ',' + this.marker.getLatLng().lng)
             : '';
 
         coordinatesInput.set('value', coordinates);
-        radiusInput.set('value', this.marker ? Math.round(this.marker.getRadius()) : '');
+
+        if (this.marker) {
+            radius = Math.round(this.marker.getRadius());
+
+            if (this.options.radius.steps > 0) {
+                radius = (this.options.radius.steps * Math.round(radius / this.options.radius.steps));
+            }
+        }
+
+        radiusInput.set('value', radius);
     },
     _panTo: function () {
         this.map.fitBounds(this.marker.getBounds());
@@ -65,6 +75,10 @@ var LeafletGeocodeCirclePicker = LeafletGeocodeAbstractPicker.extend({
 
         this.marker.on('pm:markerdragend', function () {
             var radius = this.marker.getRadius();
+
+            if (this.options.radius.steps > 0) {
+                radius = (this.options.radius.steps * Math.round(radius / this.options.radius.steps));
+            }
 
             if (this.options.radius.min > 0 && this.options.radius.min > radius) {
                 radius = this.options.radius.min;

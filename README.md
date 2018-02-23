@@ -83,25 +83,24 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['coordinates'] = [
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['radius'] = [
     'label'     => ['Radius', 'Angabe des Radius in Metern'],
-    'inputType' => 'text',
-    'eval'      => [
-        'rgxp'     => 'natural',
+    'inputType' => 'leaflet_radius', // Optional, you can use a text widget as well
+    'eval'      => [      
         'default'  => 500,
         'minval'   => 100,
         'maxval'   => 5000,
+        'steps'    => 100, // Round value to the closest 100m.
         'tl_class' => 'w50',
     ],
     'sql' => 'varchar(255) NOT NULL default \'\''
 ];
 ```
 
-If you want to add an wizard icon to the radius field as well, a wizard is shipped with. You only have to add the 
-callback and define the coordinates field relation. 
+If you want to add an wizard icon to the radius field as well, you only have to reference the coordinates field.
 
 ```php
 $GLOBALS['TL_DCA']['tl_page']['fields']['radius'] = [
     'label'     => ['Radius', 'Angabe des Radius in Metern'],
-    'inputType' => 'text',
+    'inputType' => 'leaflet_radius',
     'eval'      => [
         'rgxp'        => 'natural',
         'default'     => 500,
@@ -109,9 +108,6 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['radius'] = [
         'maxval'      => 5000,
         'tl_class'    => 'w50 wizard',
         'coordinates' => 'coordinates'
-    ],
-    'wizard' => [
-        ['netzmacht.contao_leaflet_geocode.listeners.radius_wizard', 'generateWizard'],
     ],
     'sql' => 'varchar(255) NOT NULL default \'\''
 ];

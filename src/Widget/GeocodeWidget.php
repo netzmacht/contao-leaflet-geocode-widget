@@ -159,6 +159,7 @@ class GeocodeWidget extends \Widget
             $options['min']          = isset($config['minval']) ? (int) $config['minval'] : 0;
             $options['max']          = isset($config['maxval']) ? (int) $config['maxval'] : 0;
             $options['defaultValue'] = isset($config['default']) ? (int) $config['default'] : 0;
+            $options['steps']        = isset($config['steps']) ? (int) $config['steps'] : 0;
         }
 
         return $options;

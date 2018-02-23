@@ -11,3 +11,4 @@
  */
 
 $GLOBALS['BE_FFL']['leaflet_geocode'] = 'Netzmacht\Contao\Leaflet\GeocodeWidget\Widget\GeocodeWidget';
+$GLOBALS['BE_FFL']['leaflet_radius']  = 'Netzmacht\Contao\Leaflet\GeocodeWidget\Widget\RadiusWidget';
