@@ -12,13 +12,17 @@
 
 namespace Netzmacht\Contao\Leaflet\GeocodeWidget\Widget;
 
+use Contao\BackendTemplate;
+use Contao\StringUtil;
+use Contao\Widget;
+
 /**
  * Class GeocodeWidget
  *
  * @property int  size
  * @property bool multiple
  */
-class GeocodeWidget extends \Widget
+class GeocodeWidget extends Widget
 {
     /**
      * Submit user input.
@@ -111,12 +115,12 @@ class GeocodeWidget extends \Widget
         $buffer = '';
 
         for ($index = 0; $index < $this->size; $index++) {
-            $template = new \BackendTemplate($this->widgetTemplate);
+            $template = new BackendTemplate($this->widgetTemplate);
             $template->setData(
                 [
                     'wrapperClass' => $wrapperClass,
                     'widget'       => $this,
-                    'value'        => \StringUtil::specialchars($this->value[$index]),
+                    'value'        => StringUtil::specialchars($this->value[$index]),
                     'class'        => $this->strClass ? ' ' . $this->strClass : '',
                     'id'           => $this->strId . (($this->size > 1) ? '_' . $index : ''),
                     'name'         => $this->strName . (($this->size > 1) ? '[]' : ''),
