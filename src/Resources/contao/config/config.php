@@ -1,14 +1,9 @@
 <?php
 
-/**
- * Geocode backend widget based on Leaflet.
- *
- * @package    netzmacht
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2016-2018 netzmacht David Molineus. All rights reserved.
- * @license    LGPL-3.0 https://github.com/netzmacht/contao-leaflet-geocode-widget/blob/master/LICENSE
- * @filesource
- */
+declare(strict_types=1);
 
-$GLOBALS['BE_FFL']['leaflet_geocode'] = 'Netzmacht\Contao\Leaflet\GeocodeWidget\Widget\GeocodeWidget';
-$GLOBALS['BE_FFL']['leaflet_radius']  = 'Netzmacht\Contao\Leaflet\GeocodeWidget\Widget\RadiusWidget';
+use Netzmacht\Contao\Leaflet\GeocodeWidget\Widget\GeocodeWidget;
+use Netzmacht\Contao\Leaflet\GeocodeWidget\Widget\RadiusWidget;
+
+$GLOBALS['BE_FFL']['leaflet_geocode'] = GeocodeWidget::class;
+$GLOBALS['BE_FFL']['leaflet_radius']  = RadiusWidget::class;

@@ -1,30 +1,17 @@
 <?php
 
-/**
- * Geocode backend widget based on Leaflet.
- *
- * @package    netzmacht
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2016-2018 netzmacht David Molineus. All rights reserved.
- * @license    LGPL-3.0 https://github.com/netzmacht/contao-leaflet-geocode-widget/blob/master/LICENSE
- * @filesource
- */
+declare(strict_types=1);
 
 namespace Netzmacht\Contao\Leaflet\GeocodeWidget;
 
 use Netzmacht\Contao\Leaflet\GeocodeWidget\Widget\GeocodeWidget as BaseWidget;
 
-/**
- * Class GeocodeWidget
- *
- * @deprecated
- */
 class GeocodeWidget extends BaseWidget
 {
     /**
      * {@inheritdoc}
      */
-    public function __construct(array $arrAttributes = null)
+    public function __construct(?array $arrAttributes = null)
     {
         parent::__construct($arrAttributes);
 

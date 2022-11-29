@@ -1,14 +1,6 @@
 <?php
 
-/**
- * Geocode backend widget based on Leaflet.
- *
- * @package    netzmacht
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2016-2018 netzmacht David Molineus. All rights reserved.
- * @license    LGPL-3.0 https://github.com/netzmacht/contao-leaflet-geocode-widget/blob/master/LICENSE
- * @filesource
- */
+declare(strict_types=1);
 
 namespace Netzmacht\Contao\Leaflet\GeocodeWidget\DependencyInjection;
 
@@ -17,15 +9,14 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-/**
- * Class LeafletGeocodeWidgetExtension
- */
+use function dirname;
+
 class LeafletGeocodeWidgetExtension extends Extension
 {
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader(
             $container,
