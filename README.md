@@ -1,13 +1,12 @@
 Leaflet geocode widget
 ======================
 
-[![Build Status](http://img.shields.io/travis/netzmacht/contao-leaflet-geocode-widget/master.svg?style=flat-square)](https://travis-ci.org/netzmacht/contao-leaflet-geocode-widget)
+[![Build Status](https://img.shields.io/github/workflow/status/netzmacht/contao-leaflet-geocode-widget/Code%20Quality%20Diagnostics?logo=githubactions&logoColor=%23fff&style=for-the-badge)](https://github.com/netzmacht/contao-leaflet-geocode-widget/actions)
 [![Version](http://img.shields.io/packagist/v/netzmacht/contao-leaflet-geocode-widget.svg?style=flat-square)](http://packagist.org/packages/netzmacht/contao-leaflet-geocode-widget)
 [![License](http://img.shields.io/packagist/l/netzmacht/contao-leaflet-geocode-widget.svg?style=flat-square)](http://packagist.org/packages/netzmacht/contao-leaflet-geocode-widget)
 [![Downloads](http://img.shields.io/packagist/dt/netzmacht/contao-leaflet-geocode-widget.svg?style=flat-square)](http://packagist.org/packages/netzmacht/contao-leaflet-geocode-widget)
-[![Contao Community Alliance coding standard](http://img.shields.io/badge/cca-coding_standard-red.svg?style=flat-square)](https://github.com/contao-community-alliance/coding-standard)
 
-This extension provides an widget to pick coordinates from a map. It uses the leaflet framework.
+This extension provides a widget to pick coordinates from a map. It uses the leaflet framework.
 
 Changlog
 --------
@@ -17,7 +16,8 @@ See [CHANGELOG](CHANGELOG.md).
 Requirements
 ------------
 
- - Contao ~4.4
+ - Contao ^4.13||^5.0
+ - PHP ^7.4||^8.0
 
 
 Install
@@ -38,7 +38,7 @@ If you use the managed edition of Contao you can skip this step.
 
   // Dependency is automatically installed and has to be registered
   new Contao\CoreBundle\HttpKernel\Bundle\ContaoModuleBundle('leaflet-libs', $this->getRootDir()),
-  
+
   // Register the bundle
   new Netzmacht\Contao\Leaflet\GeocodeWidget\LeafletGeocodeWidgetBundle(),
 ```
@@ -67,7 +67,7 @@ $GLOBALS['TL_DCA']['tl_example']['fields']['coordinates'] = [
 #### Coordinates and radius
 
 To pick the radius in meters as well, you have to configure the `eval.radius` option for the related radius field.
-The radius field should be a simle text input. The `default`, `minval` and `maxval` flags are passed to the geocode 
+The radius field should be a simle text input. The `default`, `minval` and `maxval` flags are passed to the geocode
 widget so that only radius in that boundary can be chosen.
 
 ```php
@@ -84,7 +84,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['coordinates'] = [
 $GLOBALS['TL_DCA']['tl_page']['fields']['radius'] = [
     'label'     => ['Radius', 'Angabe des Radius in Metern'],
     'inputType' => 'leaflet_radius', // Optional, you can use a text widget as well
-    'eval'      => [      
+    'eval'      => [
         'default'  => 500,
         'minval'   => 100,
         'maxval'   => 5000,

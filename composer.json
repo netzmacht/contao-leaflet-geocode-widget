@@ -19,9 +19,8 @@
   ],
   "support": {
     "email": "mail@netzmacht.de",
-    "issues": "https://github.com/contao-bootstrap/core/issues",
-    "wiki": "http://contao-bootstrap.netzmacht.de",
-    "source": "https://github.com/contao-bootstrap/core"
+    "issues": "https://github.com/netzmacht/contao-leaflet-geocode-widget/issues",
+    "source": "https://github.com/netzmacht/contao-leaflet-geocode-widget"
   },
   "require": {
     "php": "^7.4 || ^8.0",
