@@ -1,24 +1,13 @@
 <?php
 
-/**
- * Geocode backend widget based on Leaflet.
- *
- * @package    netzmacht
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2016-2018 netzmacht David Molineus. All rights reserved.
- * @license    LGPL-3.0 https://github.com/netzmacht/contao-leaflet-geocode-widget/blob/master/LICENSE
- * @filesource
- */
+declare(strict_types=1);
 
 namespace Netzmacht\Contao\Leaflet\GeocodeWidget\EventListener;
 
 use Contao\DataContainer;
 
-/**
- * Class RadiusWizardCallbackListener
- *
- * @package Netzmacht\Contao\Leaflet\GeocodeWidget\EventListener
- */
+use function sprintf;
+
 class RadiusWizardCallbackListener
 {
     /**
@@ -26,13 +15,13 @@ class RadiusWizardCallbackListener
      *
      * @param DataContainer $dataContainer Data container driver.
      *
-     * @return string
-     *
      * @SuppressWarnings(PHPMD.Superglobals)
      */
-    public function generateWizard($dataContainer)
+    public function generateWizard(DataContainer $dataContainer): string
     {
-        if (!isset($GLOBALS['TL_DCA'][$dataContainer->table]['fields'][$dataContainer->field]['eval']['coordinates'])) {
+        $fields = $GLOBALS['TL_DCA'][$dataContainer->table]['fields'];
+
+        if (! isset($fields[$dataContainer->field]['eval']['coordinates'])) {
             return '';
         }
 

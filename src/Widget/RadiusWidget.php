@@ -1,14 +1,6 @@
 <?php
 
-/**
- * Geocode backend widget based on Leaflet.
- *
- * @package    netzmacht
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2016-2018 netzmacht David Molineus. All rights reserved.
- * @license    LGPL-3.0 https://github.com/netzmacht/contao-leaflet-geocode-widget/blob/master/LICENSE
- * @filesource
- */
+declare(strict_types=1);
 
 namespace Netzmacht\Contao\Leaflet\GeocodeWidget\Widget;
 
@@ -16,9 +8,11 @@ use Contao\BackendTemplate;
 use Contao\StringUtil;
 use Contao\TextField;
 
-/**
- * Class RadiusWidget
- */
+use function is_array;
+use function is_numeric;
+use function round;
+use function trim;
+
 class RadiusWidget extends TextField
 {
     /**
@@ -42,20 +36,18 @@ class RadiusWidget extends TextField
 
     /**
      * Generate the widget.
-     *
-     * @return string
      */
-    public function generate()
+    public function generate(): string
     {
         $wrapperClass = $this->coordinates ? 'wizard' : '';
 
-        if (!$this->multiple || !$this->size) {
+        if (! $this->multiple || ! $this->size) {
             $this->size = 1;
         } else {
             $wrapperClass .= ' wizard_' . $this->size;
         }
 
-        if (!is_array($this->value)) {
+        if (! is_array($this->value)) {
             $this->value = [$this->value];
         }
 
@@ -69,12 +61,12 @@ class RadiusWidget extends TextField
                     'widget'       => $this,
                     'value'        => StringUtil::specialchars($this->value[$index]),
                     'class'        => $this->strClass ? ' ' . $this->strClass : '',
-                    'id'           => $this->strId . (($this->size > 1) ? '_' . $index : ''),
-                    'name'         => $this->strName . (($this->size > 1) ? '[]' : ''),
+                    'id'           => $this->strId . ($this->size > 1 ? '_' . $index : ''),
+                    'name'         => $this->strName . ($this->size > 1 ? '[]' : ''),
                     'attributes'   => $this->getAttributes(),
                     'wizard'       => $this->wizard,
                     'label'        => $this->strLabel,
-                    'coordinates'  => $this->coordinates
+                    'coordinates'  => $this->coordinates,
                 ]
             );
 
@@ -92,7 +84,7 @@ class RadiusWidget extends TextField
         if (is_numeric($varInput) && $this->steps > 0) {
             $steps    = (int) $this->steps;
             $varInput = (int) $varInput;
-            $varInput = ($steps * round($varInput / $steps));
+            $varInput = $steps * round($varInput / $steps);
         }
 
         return parent::validator($varInput);
