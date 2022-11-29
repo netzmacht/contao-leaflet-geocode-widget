@@ -13,6 +13,7 @@
 namespace Netzmacht\Contao\Leaflet\GeocodeWidget\Widget;
 
 use Contao\BackendTemplate;
+use Contao\StringUtil;
 use Contao\TextField;
 
 /**
@@ -66,7 +67,7 @@ class RadiusWidget extends TextField
                 [
                     'wrapperClass' => trim($wrapperClass),
                     'widget'       => $this,
-                    'value'        => \StringUtil::specialchars($this->value[$index]),
+                    'value'        => StringUtil::specialchars($this->value[$index]),
                     'class'        => $this->strClass ? ' ' . $this->strClass : '',
                     'id'           => $this->strId . (($this->size > 1) ? '_' . $index : ''),
                     'name'         => $this->strName . (($this->size > 1) ? '[]' : ''),
